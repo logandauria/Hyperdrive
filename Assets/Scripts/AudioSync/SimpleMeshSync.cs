@@ -59,7 +59,7 @@ public class SimpleMeshSync : AudioSyncer
             if (Random.Range(0, 2) == 1)
             {
                 // apply velocity
-                displacedVertices[i] += velocity * Time.deltaTime * ranges[i] / 40;
+                displacedVertices[i] += velocity * Time.deltaTime * ranges[i] / 50;
             }
 
 
