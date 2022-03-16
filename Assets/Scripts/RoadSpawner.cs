@@ -23,7 +23,7 @@ public class RoadSpawner : MonoBehaviour
         roads.transform.position = new Vector3(roads.transform.position.x,
         roads.transform.position.y,roads.transform.position.z - speed);
 
-        if(roads.transform.position.z < -100)
+        if(roads.transform.position.z < -10)
         {
             roads.transform.position = initPos;
         }
