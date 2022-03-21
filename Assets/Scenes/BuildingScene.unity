@@ -7545,6 +7545,7 @@ GameObject:
   - component: {fileID: 1411494684}
   - component: {fileID: 1411494683}
   - component: {fileID: 1411494686}
+  - component: {fileID: 1411494687}
   m_Layer: 0
   m_Name: b1
   m_TagString: Untagged
@@ -7662,6 +7663,24 @@ MonoBehaviour:
   restSmoothTime: 1
   beatScale: {x: 1, y: 2, z: 1}
   restScale: {x: 2, y: 4, z: 2}
+--- !u!114 &1411494687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411494682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6ef855471980114daf6f169ba462c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bias: 15
+  timeStep: 1
+  timeToBeat: 0.3
+  restSmoothTime: 1
+  beatScale: {x: 0.5, y: 1, z: 3}
+  restScale: {x: 0.01, y: 0.1, z: 0.1}
 --- !u!1 &1526216124
 GameObject:
   m_ObjectHideFlags: 0
