@@ -7,7 +7,7 @@ My favorite one to mess with is the color over lifetime seen here
 
 ![alt text](https://github.com/logandauria/Vaporwave-Reality-Racer/blob/master/images/portal_colorlifetime.png?raw=true)
 
-
+An implementation of the portal can be seen in the scene "Game" in Assets/Scenes
 
 
 drive link for unity executable:
