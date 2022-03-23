@@ -43,8 +43,8 @@ public class VFXTest2 : AudioSyncer
 		if (randomRange)
 		{
 			vfx.SetFloat("intensity", Random.Range(restVector.x, beatVector.x));
-			vfx.SetFloat("drag", Random.Range(restVector.x, beatVector.x));
-			vfx.SetFloat("frequency", Random.Range(restVector.x, beatVector.x));
+			vfx.SetFloat("drag", Random.Range(restVector.y, beatVector.y));
+			vfx.SetFloat("frequency", Random.Range(restVector.z, beatVector.z));
 		}
 		else
 		{
