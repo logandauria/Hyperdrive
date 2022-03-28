@@ -40,12 +40,14 @@ public class VFXTest2 : AudioSyncer
 	{
 		base.OnBeat();
 
+		// select a random range between desired values
 		if (randomRange)
 		{
 			vfx.SetFloat("intensity", Random.Range(restVector.x, beatVector.x));
 			vfx.SetFloat("drag", Random.Range(restVector.y, beatVector.y));
 			vfx.SetFloat("frequency", Random.Range(restVector.z, beatVector.z));
 		}
+		// set specific values provided in the inspector
 		else
 		{
 			vfx.SetFloat("intensity", beatVector.x);
