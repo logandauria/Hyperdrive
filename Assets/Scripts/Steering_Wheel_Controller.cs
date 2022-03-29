@@ -147,19 +147,22 @@ public class Steering_Wheel_Controller : MonoBehaviour
         }
     }
 
+    // Read controller grip trigger input and check if its close enough to object
     private void OnTriggerStay()
     {
+        // min distance from object the hand has to be
+        float minGrabDist = .4f;
 
         if (rightHandOnWheel == false && rightController.TryGetFeatureValue(CommonUsages.gripButton, out rightGripped) && rightGripped)
         {
-            if ((rightHand.transform.position - this.transform.position).magnitude < 1f)
+            if ((rightHand.transform.position - this.transform.position).magnitude < minGrabDist)
             {
                 PlaceHandOnWheel(ref rightHand, ref rightHandOriginalParent, ref rightHandOnWheel);
             }
         }
         if (leftHandOnWheel == false && leftController.TryGetFeatureValue(CommonUsages.gripButton, out leftGripped) && leftGripped)
         {
-            if ((leftHand.transform.position - this.transform.position).magnitude < 1f)
+            if ((leftHand.transform.position - this.transform.position).magnitude < minGrabDist)
             {
                 PlaceHandOnWheel(ref leftHand, ref leftHandOriginalParent, ref leftHandOnWheel);
             }

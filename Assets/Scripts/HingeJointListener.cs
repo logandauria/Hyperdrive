@@ -8,13 +8,17 @@ public class HingeJointListener : MonoBehaviour
     //State of the hinge joint : either reached min or max or none if in between
     public HingeJointState hingeJointState = HingeJointState.None;
 
-    //Event called on min reached
-    public UnityEvent OnMinLimitReached;
-    //Event called on max reached
-    public UnityEvent OnMaxLimitReached;
+
 
     public enum HingeJointState { Min, Max, None }
     private HingeJoint hinge;
+
+    public GameObject toToggle;
+    public float toggleLength = 10;
+
+    private bool maxHit = false;
+    private float timer = 0;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +35,8 @@ public class HingeJointListener : MonoBehaviour
         if (angleWithMinLimit < angleBetweenThreshold)
         {
             if (hingeJointState != HingeJointState.Min)
-                OnMinLimitReached.Invoke();
+                maxHit = true;
+            //OnMinLimitReached.Invoke();
 
             hingeJointState = HingeJointState.Min;
         }
@@ -39,7 +44,7 @@ public class HingeJointListener : MonoBehaviour
         else if (angleWithMaxLimit < angleBetweenThreshold)
         {
             if (hingeJointState != HingeJointState.Max)
-                OnMaxLimitReached.Invoke();
+                //OnMaxLimitReached.Invoke();
 
             hingeJointState = HingeJointState.Max;
         }
@@ -47,6 +52,17 @@ public class HingeJointListener : MonoBehaviour
         else
         {
             hingeJointState = HingeJointState.None;
+        }
+        if (maxHit)
+        {
+            toToggle.SetActive(true);
+            timer += Time.deltaTime;
+            if(timer > toggleLength)
+            {
+                toToggle.SetActive(false);
+                maxHit = false;
+                timer = 0;
+            }
         }
     }
 }
