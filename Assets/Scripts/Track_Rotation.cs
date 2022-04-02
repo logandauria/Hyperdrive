@@ -14,7 +14,7 @@ public class Track_Rotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rotate = toTrack.transform.eulerAngles.z;
+        rotate = toTrack.transform.eulerAngles.x;
         rotate = (rotate > 180) ? rotate - 360 : rotate;
         rotate *= -multiplier;
         if (rotate > rotation_cap)
