@@ -25,7 +25,6 @@ public class Steering_Wheel_Controller : MonoBehaviour
     private bool leftHandOnWheel = false;
 
     public Transform[] snapPositions;
-    public Transform directonalObject;
 
     public GameObject Vehicle;
     private Rigidbody VehicleRigidBody;
@@ -81,41 +80,51 @@ public class Steering_Wheel_Controller : MonoBehaviour
 
         TurnVehicle();
 
+        MoveVehicle();
+
         currentWheelRotation = -transform.rotation.eulerAngles.z;
 
-        transform.position = initPos;
-        transform.eulerAngles = new Vector3(initRot.x, initRot.y, transform.eulerAngles.z);
     }
 
     private void ConvertRotation()
     {
-        float initx = transform.eulerAngles.x;
+        float initz = transform.eulerAngles.z;
         float inity = transform.eulerAngles.y;
         if(rightHandOnWheel == true && leftHandOnWheel == false)
         {
-            Quaternion newRot = Quaternion.Euler(initx, inity, rightHandOriginalParent.transform.rotation.eulerAngles.z);
+            Quaternion newRot = Quaternion.Euler(rightHandOriginalParent.transform.rotation.eulerAngles.x, inity, initz);
             this.transform.rotation = newRot;
-            this.transform.parent = directonalObject;
         } 
         else if (rightHandOnWheel == false && leftHandOnWheel == true)
         {
-            Quaternion newRot = Quaternion.Euler(initx, inity, leftHandOriginalParent.transform.rotation.eulerAngles.z);
+            Quaternion newRot = Quaternion.Euler(leftHandOriginalParent.transform.rotation.eulerAngles.x, inity, initz);
             this.transform.rotation = newRot;
-            this.transform.parent = directonalObject;
         } 
         else if (rightHandOnWheel == true && leftHandOnWheel == true)
         {
-            Quaternion rightRot = Quaternion.Euler(initx, inity, rightHandOriginalParent.transform.rotation.eulerAngles.z);
-            Quaternion leftRot = Quaternion.Euler(initx, inity, leftHandOriginalParent.transform.rotation.eulerAngles.z);
+            Quaternion rightRot = Quaternion.Euler(rightHandOriginalParent.transform.rotation.eulerAngles.x, inity, initz);
+            Quaternion leftRot = Quaternion.Euler(leftHandOriginalParent.transform.rotation.eulerAngles.x, inity, initz);
             Quaternion finalRot = Quaternion.Slerp(leftRot, rightRot, 1.0f / 2.0f);
-            directonalObject.rotation = finalRot;
-            this.transform.parent = directonalObject;
+            this.transform.rotation = finalRot;
+            
         }
     }
 
+    // move the vehicle sideways depending on rotation and the boundary limits
+    private void MoveVehicle()
+    {
+        // get vehicles y rotation
+        float move = Vehicle.transform.eulerAngles.y / 10f;
+        // move vehicle smoothly
+        //Vehicle.transform.position = new Vector3(Vehicle.transform.position.x + move, Vehicle.transform.position.y, );
+        Vehicle.transform.position = Vector3.Lerp(Vehicle.transform.position, new Vector3(Vehicle.transform.position.x + move, Vehicle.transform.position.y, Vehicle.transform.position.z), Time.deltaTime);
+    }
+
+    // update vehicle's y rotation based on the steering wheel's x rotation
     private void TurnVehicle()
     {
-        var turn = -transform.rotation.eulerAngles.z;
+        // get steering wheel x rotation
+        var turn = -transform.rotation.eulerAngles.x;
         if(turn < -350)
         {
             turn = turn + 360;
@@ -143,7 +152,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
         }
         if(!leftHandOnWheel && !leftHandOnWheel)
         {
-            transform.parent = null;
+            //transform.parent = null;
         }
     }
 
@@ -190,7 +199,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
         }
         originalParent = hand.transform.parent;
 
-        hand.transform.parent = bestSnap.transform;
+        //hand.transform.parent = bestSnap.transform;
         hand.transform.position = bestSnap.transform.position;
         //hand.transform.scale
 
