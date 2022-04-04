@@ -4,33 +4,38 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class AudioSyncLighting : AudioSyncer
+public class AudioSyncLightColor : AudioSyncer
 {
 	public float beatIntensity;
 	public float restIntensity;
 	public bool setColor;
-	public Color beatColor;
-	private Color initColor;
+	public Color inputColor;
+	private Image m_img;
+
 	private Light light;
 
 	private IEnumerator ScaleLighting(float _target)
 	{
-		float _currIntensity = light.intensity;
-		float _initial = _currIntensity;
+		float _curr = light.intensity;
+		float _initial = _curr;
 		float _timer = 0;
 
-		Color _currCol = light.color;
-		Color _initialCol = _currCol;
-
-		while (_currIntensity < _target)
+		while (_curr < _target)
 		{
+			_curr = _initial + (_target - _initial) * (_timer / timeToBeat);
 			_timer += Time.deltaTime;
 
-			// update intensity
-			_currIntensity = _initial + (_target - _initial) * (_timer / timeToBeat);
-			light.intensity = _currIntensity;
-			// update color
-			light.color = Color.Lerp(_initialCol, beatColor, _timer / timeToBeat);
+			light.intensity = _curr;
+
+			// check if editor defines color
+			if (setColor)
+			{
+				light.color = inputColor;
+			}
+			else
+			{
+				light.color = m_img.color;
+			}
 
 			yield return null;
 		}
@@ -44,11 +49,17 @@ public class AudioSyncLighting : AudioSyncer
 
 		if (m_isBeat) return;
 
-		// Go back to initial values
 		light.intensity = light.intensity + (restIntensity - light.intensity) * (restSmoothTime * Time.deltaTime);
 
-		light.color = Color.Lerp(light.color, initColor, restSmoothTime * Time.deltaTime);
-
+		// check if editor defines color
+		if (setColor)
+		{
+			light.color = inputColor;
+		}
+		else
+		{
+			light.color = m_img.color;
+		}
 
 	}
 
@@ -63,8 +74,8 @@ public class AudioSyncLighting : AudioSyncer
 
 	// Start is called before the first frame update
 	void Start()
-    {
+	{
 		light = GetComponent<Light>();
-		initColor = light.color;
+		m_img = GetComponent<Image>();
 	}
 }
