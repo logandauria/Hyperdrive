@@ -16,27 +16,35 @@ public class Steering_Wheel_Controller : MonoBehaviour
     private bool rightGripped = false;
     private bool leftGripped = false;
 
-
-    public GameObject rightHand;
     private Transform rightHandOriginalParent;
     private bool rightHandOnWheel = false;
-    public GameObject leftHand;
     private Transform leftHandOriginalParent;
     private bool leftHandOnWheel = false;
 
-    public Transform[] snapPositions;
-
-    public GameObject Vehicle;
     private Rigidbody VehicleRigidBody;
-
-    // for debug viewing
-    public float currentWheelRotation = 0;
 
     // how quick rotation updates
     private float turnDampening = 250;
 
     private Vector3 initPos;
     private Vector3 initRot;
+
+
+    // INSPECTOR VALUES
+
+    public GameObject rightHand;
+    public GameObject leftHand;
+    public Transform[] snapPositions;
+    public GameObject Vehicle;
+    
+    // for debug viewing
+    public float currentWheelRotation = 0;
+
+    // Game objects that represent the bounds of the driving area
+    public GameObject XLimit;
+    public GameObject ZLimit;
+
+    
 
     // Start is called before the first frame update
     void Start()

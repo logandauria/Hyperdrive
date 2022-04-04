@@ -33,7 +33,7 @@ MonoBehaviour:
     m_Value: 0.01
   cloudThickness:
     m_OverrideState: 1
-    m_Value: 8000
+    m_Value: 5000
   fadeInMode:
     m_OverrideState: 0
     m_Value: 1
