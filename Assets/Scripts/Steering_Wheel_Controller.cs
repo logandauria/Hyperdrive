@@ -6,7 +6,6 @@ using UnityEngine.XR;
 public class Steering_Wheel_Controller : MonoBehaviour
 {
     // Unity's new XR Interaction Toolkit input handling. See instantiation in Start()
-    [SerializeField]
     private XRNode leftNode = XRNode.LeftHand;
     private XRNode rightNode = XRNode.RightHand;
     private InputDevice leftController;
@@ -29,6 +28,8 @@ public class Steering_Wheel_Controller : MonoBehaviour
     private Vector3 initPos;
     private Vector3 initRot;
 
+    private Vector3 initRightHandPos;
+    private Vector3 initLeftHandPos;
 
     // INSPECTOR VALUES
 
@@ -36,6 +37,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
     public GameObject leftHand;
     public Transform[] snapPositions;
     public GameObject Vehicle;
+    public Transform directonalObject;
     
     // for debug viewing
     public float currentWheelRotation = 0;
@@ -100,13 +102,17 @@ public class Steering_Wheel_Controller : MonoBehaviour
         float inity = transform.eulerAngles.y;
         if(rightHandOnWheel == true && leftHandOnWheel == false)
         {
-            Quaternion newRot = Quaternion.Euler(rightHandOriginalParent.transform.rotation.eulerAngles.x, inity, initz);
-            this.transform.rotation = newRot;
+            Quaternion newRot = Quaternion.Euler(rightHand.transform.rotation.eulerAngles.x*2, inity, initz);
+            //this.transform.rotation = newRot;
+            directonalObject.rotation = newRot;
+            this.transform.parent = directonalObject;
         } 
         else if (rightHandOnWheel == false && leftHandOnWheel == true)
         {
-            Quaternion newRot = Quaternion.Euler(leftHandOriginalParent.transform.rotation.eulerAngles.x, inity, initz);
-            this.transform.rotation = newRot;
+            Quaternion newRot = Quaternion.Euler(leftHand.transform.rotation.eulerAngles.x*2, inity, initz);
+            //this.transform.rotation = newRot;
+            directonalObject.rotation = newRot;
+            this.transform.parent = directonalObject;
         } 
         else if (rightHandOnWheel == true && leftHandOnWheel == true)
         {
@@ -207,9 +213,12 @@ public class Steering_Wheel_Controller : MonoBehaviour
         }
         originalParent = hand.transform.parent;
 
-        //hand.transform.parent = bestSnap.transform;
+        hand.transform.parent = bestSnap.transform;
         hand.transform.position = bestSnap.transform.position;
+
+        //hand.transform.parent = bestSnap.transform;
         //hand.transform.scale
+        //initRightHandPos = rightHand.transform.position;
 
         handOnWheel = true;
     }

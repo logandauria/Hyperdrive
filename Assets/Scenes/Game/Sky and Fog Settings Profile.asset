@@ -148,11 +148,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   enable:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   localClouds:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   earthCurvature:
     m_OverrideState: 0
     m_Value: 0
@@ -415,7 +415,7 @@ MonoBehaviour:
     m_Value: 1
   erosionSpeedMultiplier:
     m_OverrideState: 0
-    m_Value: 0.25
+    m_Value: 0
   verticalShapeWindSpeed:
     m_OverrideState: 1
     m_Value: 0
@@ -540,7 +540,7 @@ MonoBehaviour:
         mode: 3
         customValue: 100
         additiveValue: 0
-        multiplyValue: 25
+        multiplyValue: 0
     flowmap:
       m_OverrideState: 1
       m_Value: {fileID: 0}
@@ -613,6 +613,22 @@ MonoBehaviour:
     castShadows:
       m_OverrideState: 1
       m_Value: 0
+--- !u!114 &-649777699138416421
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1984a7ac01bf84b86559f7595cdc68, type: 3}
+  m_Name: LightCluster
+  m_EditorClassIdentifier: 
+  active: 0
+  cameraClusterRange:
+    m_OverrideState: 1
+    m_Value: 10
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -632,6 +648,7 @@ MonoBehaviour:
   - {fileID: -4462755104215888073}
   - {fileID: 3757845841945566563}
   - {fileID: 4911024241014513541}
+  - {fileID: -649777699138416421}
 --- !u!114 &316362617669916361
 MonoBehaviour:
   m_ObjectHideFlags: 3
