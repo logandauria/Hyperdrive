@@ -16,6 +16,9 @@ public class HingeJointListener : MonoBehaviour
     public GameObject toToggle;
     public float toggleLength = 10;
 
+    public GameObject[] scenes;
+    private int counter = 0;
+
     private bool maxHit = false;
     private float timer = 0;
     
@@ -56,6 +59,10 @@ public class HingeJointListener : MonoBehaviour
         if (maxHit)
         {
             toToggle.SetActive(true);
+            scenes[counter].SetActive(false);
+            counter += 1;
+            counter %= scenes.Length;
+            scenes[counter].SetActive(true);
             timer += Time.deltaTime;
             if(timer > toggleLength)
             {
