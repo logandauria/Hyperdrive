@@ -46,7 +46,8 @@ public class Steering_Wheel_Controller : MonoBehaviour
     public GameObject XLimit;
     public GameObject ZLimit;
 
-    
+    private Vector3 lastLeft;
+    private Vector3 lastRight;
 
     // Start is called before the first frame update
     void Start()
@@ -102,25 +103,38 @@ public class Steering_Wheel_Controller : MonoBehaviour
         float inity = transform.eulerAngles.y;
         if(rightHandOnWheel == true && leftHandOnWheel == false)
         {
+            //Vector3 rhandVel = (rightHand.transform.position - lastRight) / (Time.deltaTime * 10);
+
             Quaternion newRot = Quaternion.Euler(rightHand.transform.rotation.eulerAngles.x*2, inity, initz);
             //this.transform.rotation = newRot;
             directonalObject.rotation = newRot;
             this.transform.parent = directonalObject;
+            lastRight = rightHand.transform.position;
         } 
         else if (rightHandOnWheel == false && leftHandOnWheel == true)
         {
+            //Vector3 lhandVel = (leftHand.transform.position - lastLeft) / (Time.deltaTime * 10);
+
             Quaternion newRot = Quaternion.Euler(leftHand.transform.rotation.eulerAngles.x*2, inity, initz);
             //this.transform.rotation = newRot;
             directonalObject.rotation = newRot;
             this.transform.parent = directonalObject;
-        } 
+            lastLeft = leftHand.transform.position;
+
+        }
         else if (rightHandOnWheel == true && leftHandOnWheel == true)
         {
+            //Vector3 rhandVel = (rightHand.transform.position - lastRight) / (Time.deltaTime * 10);
+            //Vector3 lhandVel = (leftHand.transform.position - lastLeft) / (Time.deltaTime * 10);
+
             Quaternion rightRot = Quaternion.Euler(rightHandOriginalParent.transform.rotation.eulerAngles.x, inity, initz);
             Quaternion leftRot = Quaternion.Euler(leftHandOriginalParent.transform.rotation.eulerAngles.x, inity, initz);
             Quaternion finalRot = Quaternion.Slerp(leftRot, rightRot, 1.0f / 2.0f);
             this.transform.rotation = finalRot;
-            
+            lastRight = rightHand.transform.position;
+            lastLeft = leftHand.transform.position;
+
+
         }
     }
 
@@ -181,6 +195,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
             if ((rightHand.transform.position - this.transform.position).magnitude < minGrabDist)
             {
                 PlaceHandOnWheel(ref rightHand, ref rightHandOriginalParent, ref rightHandOnWheel);
+                lastRight = rightHand.transform.position;
             }
         }
         if (leftHandOnWheel == false && leftController.TryGetFeatureValue(CommonUsages.gripButton, out leftGripped) && leftGripped)
@@ -188,6 +203,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
             if ((leftHand.transform.position - this.transform.position).magnitude < minGrabDist)
             {
                 PlaceHandOnWheel(ref leftHand, ref leftHandOriginalParent, ref leftHandOnWheel);
+                lastLeft = leftHand.transform.position;
             }
         }
 

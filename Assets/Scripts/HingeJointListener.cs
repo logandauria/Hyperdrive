@@ -20,13 +20,14 @@ public class HingeJointListener : MonoBehaviour
     private int counter = 0;
 
     private bool maxHit = false;
-    private float timer = 0;
+    public float timer = 0;
 
     // gear was being weird so we're locking it's local position
     private Vector3 initPos;
 
     // prevents events from constantly triggering
     private bool doOnce = true;
+    private bool timerOn = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,10 +36,6 @@ public class HingeJointListener : MonoBehaviour
         hinge = GetComponent<HingeJoint>();
     }
 
-    private void StartTimer()
-    {
-       timer += Time.deltaTime;
-    }
 
     private void FixedUpdate()
     {
@@ -78,16 +75,22 @@ public class HingeJointListener : MonoBehaviour
             counter %= scenes.Length;
             scenes[counter].SetActive(true);
             doOnce = false;
+            timerOn = true;
             timer = 0;
-            StartCoroutine("StartTimer");
+
         }
+
+        if (timerOn)
+        {
+            timer += Time.deltaTime;
+        }
+
 
         if (timer > toggleLength)
         {
-            StopCoroutine("StartTimer");
             toToggle.SetActive(false);
+            timerOn = false;
             maxHit = false;
-            timer = 0;
             doOnce = true;
         }
     }
