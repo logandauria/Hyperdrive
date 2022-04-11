@@ -35,7 +35,7 @@ public class HingeJointListener : MonoBehaviour
         hinge = GetComponent<HingeJoint>();
     }
 
-    private IEnumerator StartTimer()
+    private void StartTimer()
     {
        timer += Time.deltaTime;
     }
