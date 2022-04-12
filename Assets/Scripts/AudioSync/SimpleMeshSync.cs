@@ -12,9 +12,14 @@ public class SimpleMeshSync : AudioSyncer
 
     public int force;
     public GameObject player;
+    public int xSize = 0;
+    public int ySize = 0;
+
+
 
     Mesh deformingMesh;
     Vector3[] originalVertices, displacedVertices, vertexVelocities;
+
 
 
     // creates pseudo-random velocities of each vertex
@@ -35,11 +40,60 @@ public class SimpleMeshSync : AudioSyncer
         }
     }
 
+    // Calculates velocities for a random non edge point and it's surrounding points. Surrounding points will be given less velocity.
+    void createAreaVelocity()
+    {
+        // Radius of area to be influenced
+        // Todo: Randomize?
+        int areaRadius = Random.Range(2, Mathf.Min(xSize, ySize) / 2 - 5);
+        int randVel = Random.Range(0, force);
+        // pick a random non-edge point 
+        int randX = Random.Range(areaRadius+1,xSize-(areaRadius+1));
+        int randY = Random.Range(areaRadius+1,ySize-(areaRadius+1));
+        // midpoint's index in the vertex arrays
+        int midIndex = ySize * randX + randY;
+
+        // normalizing force
+        float nf = -displacedVertices[midIndex].y;
+
+        // calculate base velocity now to prevent repeated math
+        Vector3 preVelocity = Vector3.up * randVel * nf;
+
+
+        // Apply full velocity to midpoint
+        vertexVelocities[midIndex] = preVelocity;
+
+        // Create smaller velocities of the area around the midpoint
+        for(int x = -areaRadius ; x <= areaRadius; x++){
+            for(int y = -areaRadius; y <= areaRadius; y++){
+                if(x!=0 && y!=0){
+                    // current index in the vertex arrays
+                    int curIndex = midIndex + y + (x * ySize);
+                    // recalculate normal force for selected vertex
+                    nf = -displacedVertices[curIndex].y;
+                    if (nf > -1 && nf < 0)
+                    {
+                        nf = -1;
+                    }
+                    else if (nf < 1 && nf > 0)
+                    {
+                        nf = 1;
+                    }
+                    vertexVelocities[curIndex] = preVelocity * nf / Mathf.Sqrt((Mathf.Abs(x) + Mathf.Abs(y)));
+                }
+            }
+        }
+    }
+
     public override void OnBeat()
     {
         base.OnBeat();
-        createVelocities();
-
+        //createVelocities();
+        int areas = Random.Range(5, 8);
+        for (int x = 0; x < areas; x++)
+        {
+            createAreaVelocity();
+        }
     }
 
     // Update is called once per frame
