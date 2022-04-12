@@ -38491,8 +38491,7 @@ GameObject:
   - component: {fileID: 1992786249}
   - component: {fileID: 1992786253}
   - component: {fileID: 1992786252}
-  - component: {fileID: 1992786251}
-  - component: {fileID: 1992786250}
+  - component: {fileID: 1992786254}
   m_Layer: 0
   m_Name: b1 (1)
   m_TagString: Untagged
@@ -38516,42 +38515,6 @@ Transform:
   m_Father: {fileID: 1969376723}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1992786250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992786248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6ef855471980114daf6f169ba462c23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bias: 15
-  timeStep: 1
-  timeToBeat: 0.3
-  restSmoothTime: 1
-  beatScale: {x: 0.5, y: 1, z: 3}
-  restScale: {x: 0.01, y: 0.1, z: 0.1}
---- !u!114 &1992786251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1992786248}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99be027ed05e0204bb33c52eebae8dcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bias: 15
-  timeStep: 0.3
-  timeToBeat: 0.5
-  restSmoothTime: 1
-  beatScale: {x: 1, y: 2, z: 1}
-  restScale: {x: 2, y: 4, z: 2}
 --- !u!73398921 &1992786252
 VFXRenderer:
   serializedVersion: 1
@@ -38641,6 +38604,25 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
+--- !u!114 &1992786254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1992786248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c09ae07cf709044baa3d6c460126da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bias: 15
+  timeStep: 1
+  timeToBeat: 0.3
+  restSmoothTime: 1
+  restVelocity: 0.1
+  beatVelocity: 0
+  triggerTime: 0.05
 --- !u!1 &2001101746 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7c7837bee3340f84b9c85a7c37c4dbbd, type: 3}
