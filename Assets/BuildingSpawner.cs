@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class RoadSpawner : MonoBehaviour
+public class BuildingSpawner : MonoBehaviour
 {
     public GameObject[] spawnpoints;
     public float speed;
     public float spawnTime = 1;
     public float zLimit = 0;
+    public Vector3 offset;
     public GameObject[] prefabs;
 
-    public List<GameObject> active = new List<GameObject>();
+    private List<GameObject> active = new List<GameObject>();
 
-    private float offset = 0f;
     private float timer = 0;
     // Start is called before the first frame update
     void Start()
@@ -24,11 +24,11 @@ public class RoadSpawner : MonoBehaviour
     {
         // select random prefab and random lane of the lists provided in the inspector
         int select = Random.Range(0, prefabs.Length - 1);
-        int lane = Random.Range(0, spawnpoints.Length - 1);
+        int lane = Random.Range(0, spawnpoints.Length);
         // instantiate
-        active.Add(Instantiate(prefabs[select], spawnpoints[lane].transform.position, spawnpoints[lane].transform.rotation));
+        active.Add(Instantiate(prefabs[select], spawnpoints[lane].transform.position + offset, spawnpoints[lane].transform.rotation));
         // customize prefab:
-        //active[active.Count-1]
+        active[active.Count - 1].SetActive(true);
     }
 
     // Update is called once per frame
