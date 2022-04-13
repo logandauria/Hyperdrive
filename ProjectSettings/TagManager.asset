@@ -3,19 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - PlayerHand
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Grab
   - Water
   - UI
   - 
   - 
   - PostProcessing
   - Not in Reflection
-  - 
+  - rip
   - 
   - 
   - 

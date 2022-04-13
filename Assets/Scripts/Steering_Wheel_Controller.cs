@@ -154,12 +154,13 @@ public class Steering_Wheel_Controller : MonoBehaviour
     private void TurnVehicle()
     {
         // get steering wheel x rotation
-        var turn = -transform.rotation.eulerAngles.x;
+        var turn = -transform.rotation.eulerAngles.z;
         if(turn < -350)
         {
             turn = turn + 360;
         }
-        VehicleRigidBody.MoveRotation(Quaternion.RotateTowards(Vehicle.transform.rotation, Quaternion.Euler(0, turn, 0), Time.deltaTime * turnDampening));
+        Vehicle.transform.eulerAngles = new Vector3(Vehicle.transform.eulerAngles.x, turn, Vehicle.transform.eulerAngles.z);
+        //VehicleRigidBody.MoveRotation(Quaternion.RotateTowards(Vehicle.transform.rotation, Quaternion.Euler(0, turn, 0), Time.deltaTime * turnDampening));
     }
 
     private void ReleaseHandsFromWheel()

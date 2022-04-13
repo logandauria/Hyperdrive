@@ -31,6 +31,15 @@ public class BuildingSpawner : MonoBehaviour
         active[active.Count - 1].SetActive(true);
     }
 
+    public void killAll()
+    {
+        foreach (GameObject g in active)
+        {
+            Destroy(g);
+            active.Remove(g);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
