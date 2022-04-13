@@ -46,15 +46,31 @@ public class Steering_Wheel_Controller : MonoBehaviour
     public GameObject XLimit;
     public GameObject ZLimit;
 
+    public GameObject buttonPush;
+
     private Vector3 lastLeft;
     private Vector3 lastRight;
+    [SerializeField]
+    public float observeMove;
 
     // Start is called before the first frame update
     void Start()
     {
         initPos = this.transform.position;
         initRot = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
-        VehicleRigidBody = Vehicle.GetComponent<Rigidbody>();
+        //Physics.IgnoreCollision(this.GetComponent<Rigidbody>(), rightHand.GetComponentInParent<BoxCollider>(), true);
+        //Physics.IgnoreCollision(this.GetComponent<Rigidbody>(), leftHand.GetComponentInParent<BoxCollider>(), true);
+        //List<Collider> snapColliders = this.transform.GetChild(1).gameObject.GetComponentsInChildren <Collider>()
+        foreach (Collider snap in this.transform.GetChild(1).gameObject.GetComponentsInChildren<Collider>())
+        {
+            Physics.IgnoreCollision(snap, rightHand.GetComponentInParent<BoxCollider>(), true);
+            Physics.IgnoreCollision(snap, leftHand.GetComponentInParent<BoxCollider>(), true);
+            Physics.IgnoreCollision(snap, buttonPush.GetComponent<Collider>(), true);
+        }
+
+        Debug.Log("ignore set");
+        //Physics.IgnoreCollision(leftHand.GetComponent<Collider>(), rightHand.GetComponent<Collider>(), true);
+        //Physics.IgnoreCollision(rightHand.GetComponent<Collider>(), leftHand.GetComponent<Collider>(), true);
 
     }
 
@@ -93,7 +109,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
 
         TurnVehicle();
 
-        //MoveVehicle();
+        MoveVehicle();
 
         currentWheelRotation = -transform.rotation.eulerAngles.z;
 
@@ -144,17 +160,20 @@ public class Steering_Wheel_Controller : MonoBehaviour
     private void MoveVehicle()
     {
         // get vehicles y rotation
-        float move = Vehicle.transform.eulerAngles.y / 10f;
+        // 200 is speed dampen
+        float move = Vehicle.transform.rotation.y;
+        //if (this.transform.localEulerAngles.z > 0) move = -move;
+        observeMove = move;
         // move vehicle smoothly
         //Vehicle.transform.position = new Vector3(Vehicle.transform.position.x + move, Vehicle.transform.position.y, );
-        Vehicle.transform.position = Vector3.Lerp(Vehicle.transform.position, new Vector3(Vehicle.transform.position.x + move, Vehicle.transform.position.y, Vehicle.transform.position.z), Time.deltaTime);
+        //Vehicle.transform.position = Vector3.Lerp(Vehicle.transform.position, new Vector3(Vehicle.transform.position.x + move, Vehicle.transform.position.y, Vehicle.transform.position.z), Time.deltaTime);
     }
 
     // update vehicle's y rotation based on the steering wheel's x rotation
     private void TurnVehicle()
     {
         // get steering wheel x rotation
-        var turn = -transform.rotation.eulerAngles.z;
+        var turn = -transform.transform.localEulerAngles.z;
         if(turn < -350)
         {
             turn = turn + 360;
