@@ -39,7 +39,7 @@ public class HingeJointListener : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.localPosition = initPos;
+        //transform.localPosition = initPos;
         float angleWithMinLimit = Mathf.Abs(hinge.angle - hinge.limits.min);
         float angleWithMaxLimit = Mathf.Abs(hinge.angle - hinge.limits.max);
 
