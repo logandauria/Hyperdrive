@@ -78,6 +78,8 @@ public class Steering_Wheel_Controller : MonoBehaviour
     void Update()
     {
 
+
+
         if (!leftController.isValid /*|| !rightController.isValid*/)
         {
             GetDevice();
@@ -87,17 +89,17 @@ public class Steering_Wheel_Controller : MonoBehaviour
 
         ReleaseHandsFromWheel();
 
-        ConvertRotation();
+        //ConvertRotation();
 
         TurnVehicle();
 
-        MoveVehicle();
+        //MoveVehicle();
 
         currentWheelRotation = -transform.rotation.eulerAngles.z;
 
     }
 
-    private void ConvertRotation()
+    /*private void ConvertRotation()
     {
         float initz = transform.eulerAngles.z;
         float inity = transform.eulerAngles.y;
@@ -136,7 +138,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
 
 
         }
-    }
+    }*/
 
     // move the vehicle sideways depending on rotation and the boundary limits
     private void MoveVehicle()
@@ -229,7 +231,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
         }
         originalParent = hand.transform.parent;
 
-        hand.transform.parent = bestSnap.transform;
+        //hand.transform.parent = bestSnap.transform;
         hand.transform.position = bestSnap.transform.position;
 
         //hand.transform.parent = bestSnap.transform;
@@ -238,4 +240,5 @@ public class Steering_Wheel_Controller : MonoBehaviour
 
         handOnWheel = true;
     }
+
 }
