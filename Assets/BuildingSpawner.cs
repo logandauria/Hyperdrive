@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class BuildingSpawner : MonoBehaviour
 {
@@ -31,12 +33,19 @@ public class BuildingSpawner : MonoBehaviour
         active[active.Count - 1].SetActive(true);
     }
 
+    void OnDisable()
+    {
+        killAll();
+    }
+
     public void killAll()
     {
-        foreach (GameObject g in active)
+        Debug.Log("kill all");
+        for(int x = 0; x < active.Count; x++)
         {
-            Destroy(g);
-            active.Remove(g);
+            Destroy(active[x]);
+            active.RemoveAt(x);
+            x--;
         }
     }
 

@@ -63,8 +63,8 @@ public class Steering_Wheel_Controller : MonoBehaviour
         //List<Collider> snapColliders = this.transform.GetChild(1).gameObject.GetComponentsInChildren <Collider>()
         foreach (Collider snap in this.transform.GetChild(1).gameObject.GetComponentsInChildren<Collider>())
         {
-            Physics.IgnoreCollision(snap, rightHand.GetComponentInParent<BoxCollider>(), true);
-            Physics.IgnoreCollision(snap, leftHand.GetComponentInParent<BoxCollider>(), true);
+            Physics.IgnoreCollision(snap, rightHand.GetComponentInParent<Collider>(), true);
+            Physics.IgnoreCollision(snap, leftHand.GetComponentInParent<Collider>(), true);
             Physics.IgnoreCollision(snap, buttonPush.GetComponent<Collider>(), true);
         }
 
@@ -93,9 +93,6 @@ public class Steering_Wheel_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-
         if (!leftController.isValid /*|| !rightController.isValid*/)
         {
             GetDevice();
