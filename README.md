@@ -22,9 +22,9 @@ In unity hub, add an existing project by clicking add and navigate to where you 
 ### Steering Wheel Functionality  
 
 The steering wheel is a gameobject with the root parent being the XR Origin. This way the wheel can track the movements of the vehicle (also attached to XR Origin) and update accordingly. The grab functionality is implemented through an XR Grab Interactable component with velocity tracking enabled as seen below  
-![alt text](img)  
+![alt text](https://github.com/logandauria/Vaporwave-Reality-Racer/blob/master/images/XRGrabInteractable.png?raw=true)  
 This approach causes the parent (Vehicle > XR Origin) of the wheel to be overridden to the XR hand(s). To remedy this we can set a parent constraint component on the steering wheel to set its 'false parent' to the XR Origin so the needed position and rotation data can still be tracked.  
-![alt text](img)  
+![alt text](https://github.com/logandauria/Vaporwave-Reality-Racer/blob/master/images/ParentConstraint.png?raw=true)  
 The Z rotation axis needs to be unfrozen because it's the axis in which the user turns the steering wheel. This should not mirror the XR Origin transform.  
 
 ### PORTALS
