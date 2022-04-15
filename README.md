@@ -2,6 +2,10 @@
 
 # Vaporwave reality racer
 
+## Executable Unity File  
+
+placeholder  
+
 ## Setting up for development
 The unity project uses version 2022.1.0b9 so make sure you download the proper unity installation.
 
@@ -13,7 +17,17 @@ https://unity3d.com/get-unity/download
 
 In unity hub, add an existing project by clicking add and navigate to where you downloaded this repository. Make sure you're in the root directory where you can see the 'Assets' folder when you click open.
 
-## PORTALS
+## Development Features
+
+### Steering Wheel Functionality  
+
+The steering wheel is a gameobject with the root parent being the XR Origin. This way the wheel can track the movements of the vehicle (also attached to XR Origin) and update accordingly. The grab functionality is implemented through an XR Grab Interactable component with velocity tracking enabled as seen below  
+![alt text](img)  
+This approach causes the parent (Vehicle > XR Origin) of the wheel to be overridden to the XR hand(s). To remedy this we can set a parent constraint component on the steering wheel to set its 'false parent' to the XR Origin so the needed position and rotation data can still be tracked.  
+![alt text](img)  
+The Z rotation axis needs to be unfrozen because it's the axis in which the user turns the steering wheel. This should not mirror the XR Origin transform.  
+
+### PORTALS
 
 The portals are implemented in vfx graphs found in Assets/VFX
 currently there is only portal1 but more to come.
@@ -23,9 +37,6 @@ My favorite one to mess with is the color over lifetime seen here
 ![alt text](https://github.com/logandauria/Vaporwave-Reality-Racer/blob/master/images/portal_colorlifetime.png?raw=true)
 
 An implementation of the portal can be seen in the scene "Game" in Assets/Scenes
-
-
-## Developments
 
 ### Creating a particle mesh
 Unity has a useful tool called the point cache bake tool (Window>Visual Effects>Utilities>Point Cache Bake Tool) where you input a mesh and it exports a set of points that can be used by VFX graphs.
