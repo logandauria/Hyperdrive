@@ -90,7 +90,7 @@ public class SimpleMeshSync : AudioSyncer
         base.OnBeat();
         //createVelocities();
         int areas = Random.Range(5, 8);
-        for (int x = 0; x < areas; x++)
+        for (int x = 0; x < 1; x++)
         {
             createAreaVelocity();
         }

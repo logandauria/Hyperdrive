@@ -4,7 +4,10 @@
 
 ## Executable Unity File  
 
-placeholder  
+placeholder   
+
+Demo video  
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/Mmphal3r9Ew/0.jpg)](https://www.youtube.com/watch?v=Mmphal3r9Ew)
 
 ## Setting up for development
 The unity project uses version 2022.1.0b9 so make sure you download the proper unity installation.
@@ -18,6 +21,33 @@ https://unity3d.com/get-unity/download
 In unity hub, add an existing project by clicking add and navigate to where you downloaded this repository. Make sure you're in the root directory where you can see the 'Assets' folder when you click open.
 
 ## Development Features
+
+### Audio Sync Effects
+
+Audio syncing is implemented using the AudioListener.GetSpectrumData() function to get a changing spectrum value that increases with the intensity of the soundtrack attached to an audiosource in the Unity Scene. There are some great resources that explain this in detail:  
+https://www.youtube.com/watch?v=PzVbaaxgPco  
+https://www.youtube.com/watch?v=4Av788P9stk  
+
+This repository contains many custom effect scripts along with more documentation found in (Assets > Scripts > AudioSync). The potential of these effects are endless, with syncing already implemented for color, light intensity, all transform data fields, VFX turbulence and conform variables, object spawning, mesh deformation and more. Let's take a look at one of the VFX audio sync scripts to assist in understanding this.
+
+![alt text](https://github.com/TeamSally/SallyProject/blob/master/images/vfxtest2.png)
+
+**Bias** - the value threshold for when a beat will occur to music. Higher values are for stronger notes. Range is 0-100~  
+**Time Step** - the amount of time required between different beat triggers  
+**Time to Beat** - the amount of time it takes for an effect to trigger  
+**Rest Smooth Time** - the amount of time it takes to revert back to the original state defined by the restVector  
+
+For the beat and rest vectors, the xyz values correlate to the following VFX turbulence variables: (X: intensity, Y: drag, Z: frequency)  
+**X/Intensity** is the strength of all forces applied  
+**Y/Drag** is the strength of random directional forces applied  
+**Z/Frequency** is a preset movement pattern based on the provided seed value  
+  
+**Beat Vector Upper Bound** - The upper bound for range values that will be set once a beat occurs  
+**Beat Vector Lower Bound** - The lower bound for range values that will be set once a beat occurs  
+**Rest Vector** - The default values that the graph goes back to when there are no beats occuring  
+**Trigger Time** - Override for the rest smooth time, causing the effect to last for the time entered in seconds
+**Random Range** - Will activate functionality for the XYZ values to be randomly selected between a range of the beat vector and rest vector. If false, only the upper bound range vector and rest vector will be used.
+
 
 ### Steering Wheel Functionality  
 
@@ -83,5 +113,10 @@ Import an obj into the assets folder of the project, or select a preexisting one
 Here's how to open the point cache bake tool:
 
 ![alt text](https://github.com/TeamSally/SallyProject/blob/master/images/pointcache.png?raw=true)
+
+This effect can also be produced using SDFs (signed distance fields) created by the SDF bake tool also seen in the screenshot above. SDFs can be plugged into the set position along with a conform to SDF blocks in a VFX Graph as seen below  
+This provides the advantage of having moving particles that confrom to the baked set of points that are input.   
+![alt text](https://github.com/logandauria/Vaporwave-Reality-Racer/blob/master/images/SDFVFX2.png?raw=true)
+![alt text](https://github.com/logandauria/Vaporwave-Reality-Racer/blob/master/images/SDFVFX1.png?raw=true)
 
 

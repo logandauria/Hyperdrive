@@ -12,7 +12,10 @@ public class BuildingSpawner : MonoBehaviour
     public float spawnTime = 1;
     public float zLimit = 0;
     public Vector3 offset;
+    public bool randomRotation = false;
+    public bool randomScale = false;
     public GameObject[] prefabs;
+    
 
     private List<GameObject> active = new List<GameObject>();
 
@@ -29,6 +32,11 @@ public class BuildingSpawner : MonoBehaviour
         int lane = Random.Range(0, spawnpoints.Length);
         // instantiate
         active.Add(Instantiate(prefabs[select], spawnpoints[lane].transform.position + offset, spawnpoints[lane].transform.rotation));
+        if (randomRotation) active[active.Count - 1].transform.eulerAngles += new Vector3(0, Random.Range(0, 360), 0);
+        if (randomScale) {
+            float scaleInc = Random.Range(-0.2f, 1.5f);
+            active[active.Count - 1].transform.localScale += new Vector3(scaleInc, scaleInc, scaleInc);
+        }
         // customize prefab:
         active[active.Count - 1].SetActive(true);
     }
