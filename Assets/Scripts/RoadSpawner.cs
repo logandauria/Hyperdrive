@@ -51,6 +51,7 @@ public class RoadSpawner : MonoBehaviour
             Destroy(active[x]);
             active.RemoveAt(x);
             x--;
+            //Debug.Log("destroyed");
         }
     }
 
@@ -60,7 +61,7 @@ public class RoadSpawner : MonoBehaviour
         // move objects and kill objects that pass the z limit
         for (int x = 0; x < active.Count; x++)
         {
-            active[x].transform.position = new Vector3(active[x].transform.position.x, active[x].transform.position.y, active[x].transform.position.z - speed);
+            active[x].transform.position = new Vector3(active[x].transform.position.x, active[x].transform.position.y, active[x].transform.position.z - (speed * GlobalSpeed.multiplier));
             if (active[x].transform.position.z < zLimit)
             {
                 Destroy(active[x]);

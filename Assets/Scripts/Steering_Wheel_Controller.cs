@@ -23,7 +23,6 @@ public class Steering_Wheel_Controller : MonoBehaviour
     private Rigidbody VehicleRigidBody;
 
     // how quick rotation updates
-    private float turnDampening = 250;
 
     private Vector3 initPos;
     private Vector3 initRot;
@@ -33,7 +32,8 @@ public class Steering_Wheel_Controller : MonoBehaviour
 
     private Vector3 initCarPos;
     private Vector3 curCarPos;
-    private float turnDamper = 400f;
+    public float turnDamper = 2f;
+    public float moveDamper = 400f;
 
     // INSPECTOR VALUES
 
@@ -173,7 +173,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
         {
             move = move - 360;
         }
-        move /= turnDamper;
+        move /= moveDamper;
 
         if(move > 0 && Mathf.Abs(Vehicle.transform.position.x - XLimit1.transform.position.x) < 1)
         {
@@ -188,6 +188,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
         observeMove = move;
         // move vehicle smoothly
         //Vehicle.transform.position = new Vector3(Vehicle.transform.position.x + move, Vehicle.transform.position.y, );
+        // move environment
         GameObject[] environmentObjs = GameObject.FindGameObjectsWithTag("env");
         foreach(GameObject g in environmentObjs)
         {
@@ -202,7 +203,9 @@ public class Steering_Wheel_Controller : MonoBehaviour
     {
         // get steering wheel x rotation
         var turn = -transform.transform.localEulerAngles.z;
-        if(turn < -350)
+        //turn /= turnDamper;
+
+        if (turn < -350)
         {
             turn = turn + 360;
         }
