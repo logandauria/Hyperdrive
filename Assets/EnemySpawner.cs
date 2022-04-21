@@ -5,14 +5,14 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class RoadSpawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
-    //public GameObject spawnpoint;
+    public GameObject[] spawnpoints;
     public float speed;
-    public float zLimit = -25;
-    public Vector3 offset1;
-    public Vector3 offset2;
-    public GameObject road;
+    public float spawnTime = 1;
+    public float zLimit = 0;
+    public Vector3 offset;
+    public GameObject[] prefabs;
 
 
     private List<GameObject> active = new List<GameObject>();
@@ -22,19 +22,19 @@ public class RoadSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        active.Add(Instantiate(road, road.transform.position + offset1, road.transform.rotation));
-        active[active.Count - 1].tag = "env";
-        active[active.Count - 1].SetActive(true);
-        SpawnAnother();
     }
 
-    void SpawnAnother()
+    void Spawn()
     {
-
+        // select random prefab and random lane of the lists provided in the inspector
+        int select = Random.Range(0, prefabs.Length - 1);
+        int lane = Random.Range(0, spawnpoints.Length);
         // instantiate
-        active.Add(Instantiate(road, road.transform.position + offset2, road.transform.rotation));
+        active.Add(Instantiate(prefabs[select], spawnpoints[lane].transform.position + offset, spawnpoints[lane].transform.rotation));
         // make sure to update tag for runtime movement called by other script
         active[active.Count - 1].tag = "env";
+        
+        
         active[active.Count - 1].SetActive(true);
     }
 
@@ -57,6 +57,13 @@ public class RoadSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+        if (timer > spawnTime)
+        {
+            timer = 0;
+            Spawn();
+        }
+
         // move objects and kill objects that pass the z limit
         for (int x = 0; x < active.Count; x++)
         {
@@ -66,7 +73,6 @@ public class RoadSpawner : MonoBehaviour
                 Destroy(active[x]);
                 active.RemoveAt(x);
                 x--;
-                SpawnAnother();
             }
         }
     }

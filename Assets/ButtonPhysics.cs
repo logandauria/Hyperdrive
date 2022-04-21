@@ -39,7 +39,7 @@ public class ButtonPhysics : MonoBehaviour
 
     private float GetValue()
     {
-        var value = Vector3.Distance(startPos, transform.localPosition) / joint.linearLimit.limit;
+        var value = Mathf.Abs(startPos.y - transform.localPosition.y) / joint.linearLimit.limit;
         if(Mathf.Abs(value) < deadZone)
         {
             value = 0;

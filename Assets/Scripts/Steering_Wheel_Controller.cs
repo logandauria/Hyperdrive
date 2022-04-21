@@ -31,6 +31,10 @@ public class Steering_Wheel_Controller : MonoBehaviour
     private Vector3 initRightHandPos;
     private Vector3 initLeftHandPos;
 
+    private Vector3 initCarPos;
+    private Vector3 curCarPos;
+    private float turnDamper = 400f;
+
     // INSPECTOR VALUES
 
     public GameObject rightHand;
@@ -43,8 +47,8 @@ public class Steering_Wheel_Controller : MonoBehaviour
     public float currentWheelRotation = 0;
 
     // Game objects that represent the bounds of the driving area
-    public GameObject XLimit;
-    public GameObject ZLimit;
+    public GameObject XLimit1;
+    public GameObject XLimit2;
 
     public GameObject buttonPush;
 
@@ -58,6 +62,8 @@ public class Steering_Wheel_Controller : MonoBehaviour
     {
         initPos = this.transform.position;
         initRot = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z);
+
+        initCarPos = Vehicle.transform.localPosition;
         //Physics.IgnoreCollision(this.GetComponent<Rigidbody>(), rightHand.GetComponentInParent<BoxCollider>(), true);
         //Physics.IgnoreCollision(this.GetComponent<Rigidbody>(), leftHand.GetComponentInParent<BoxCollider>(), true);
         //List<Collider> snapColliders = this.transform.GetChild(1).gameObject.GetComponentsInChildren <Collider>()
@@ -110,6 +116,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
 
         currentWheelRotation = -transform.rotation.eulerAngles.z;
 
+        curCarPos = Vehicle.transform.localPosition;
     }
 
     /*private void ConvertRotation()
@@ -156,13 +163,37 @@ public class Steering_Wheel_Controller : MonoBehaviour
     // move the vehicle sideways depending on rotation and the boundary limits
     private void MoveVehicle()
     {
+        //Debug.Log("angle:" + angle);
         // get vehicles y rotation
         // 200 is speed dampen
-        float move = Vehicle.transform.rotation.y;
+
+
+        float move = Vehicle.transform.eulerAngles.y;
+        if(move > 180)
+        {
+            move = move - 360;
+        }
+        move /= turnDamper;
+
+        if(move > 0 && Mathf.Abs(Vehicle.transform.position.x - XLimit1.transform.position.x) < 1)
+        {
+            move = 0;
+        }
+        if(move < 0 && Mathf.Abs(Vehicle.transform.position.x - XLimit2.transform.position.x) < 1)
+        {
+            move = 0;
+        }
+        //if (Vehicle.transform.position.x < threshold) move *= -1;
         //if (this.transform.localEulerAngles.z > 0) move = -move;
         observeMove = move;
         // move vehicle smoothly
         //Vehicle.transform.position = new Vector3(Vehicle.transform.position.x + move, Vehicle.transform.position.y, );
+        GameObject[] environmentObjs = GameObject.FindGameObjectsWithTag("env");
+        foreach(GameObject g in environmentObjs)
+        {
+            g.transform.position = new Vector3(g.transform.position.x - move, g.transform.position.y, g.transform.position.z);
+
+        }
         //Vehicle.transform.position = Vector3.Lerp(Vehicle.transform.position, new Vector3(Vehicle.transform.position.x + move, Vehicle.transform.position.y, Vehicle.transform.position.z), Time.deltaTime);
     }
 
