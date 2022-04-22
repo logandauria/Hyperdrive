@@ -188,6 +188,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
         observeMove = move;
         // move vehicle smoothly
         //Vehicle.transform.position = new Vector3(Vehicle.transform.position.x + move, Vehicle.transform.position.y, );
+
         // move environment
         GameObject[] environmentObjs = GameObject.FindGameObjectsWithTag("env");
         foreach(GameObject g in environmentObjs)
