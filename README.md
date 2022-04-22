@@ -6,8 +6,8 @@
 
 placeholder   
 
-Demo video  
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/Mmphal3r9Ew/0.jpg)](https://www.youtube.com/watch?v=Mmphal3r9Ew)
+## Demo video  
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/0yUaF6ypi7c/0.jpg)](https://www.youtube.com/watch?v=0yUaF6ypi7c)
 
 ## Setting up for development
 The unity project uses version 2022.1.0b9 so make sure you download the proper unity installation.
