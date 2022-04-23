@@ -69,7 +69,7 @@ public class ProjectileSpawner : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > spawnTime)
+        if (timer > spawnTime / GlobalSpeed.multiplier)
         {
             timer = 0;
             Spawn();

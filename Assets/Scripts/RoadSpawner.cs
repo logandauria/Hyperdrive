@@ -22,10 +22,10 @@ public class RoadSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        active.Add(Instantiate(road, road.transform.position + offset1, road.transform.rotation));
-        active[active.Count - 1].tag = "env";
-        active[active.Count - 1].SetActive(true);
-        SpawnAnother();
+        //active.Add(Instantiate(road, road.transform.position + offset1, road.transform.rotation));
+        //active[active.Count - 1].tag = "env";
+        //active[active.Count - 1].SetActive(true);
+        //SpawnAnother();
     }
 
     void SpawnAnother()
@@ -41,6 +41,14 @@ public class RoadSpawner : MonoBehaviour
     void OnDisable()
     {
         killAll();
+    }
+
+    void OnEnable()
+    {
+        active.Add(Instantiate(road, road.transform.position + offset1, road.transform.rotation));
+        active[active.Count - 1].tag = "env";
+        active[active.Count - 1].SetActive(true);
+        SpawnAnother();
     }
 
     public void killAll()
