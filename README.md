@@ -115,7 +115,7 @@ Here's how to open the point cache bake tool:
 ![alt text](https://github.com/TeamSally/SallyProject/blob/master/images/pointcache.png?raw=true)
 
 This effect can also be produced using SDFs (signed distance fields) created by the SDF bake tool also seen in the screenshot above. SDFs can be plugged into the set position along with a conform to SDF blocks in a VFX Graph as seen below  
-This provides the advantage of having moving particles that confrom to the baked set of points that are input.   
+This provides the advantage of having moving particles that conform to the baked set of points that are input.   
 ![alt text](https://github.com/logandauria/Vaporwave-Reality-Racer/blob/master/images/SDFVFX2.png?raw=true)
 ![alt text](https://github.com/logandauria/Vaporwave-Reality-Racer/blob/master/images/SDFVFX1.png?raw=true)
 
