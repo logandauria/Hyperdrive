@@ -39,9 +39,9 @@ This repository contains many custom effect scripts along with more documentatio
 **Rest Smooth Time** - the amount of time it takes to revert back to the original state defined by the restVector  
 
 For the beat and rest vectors, the xyz values correlate to the following VFX turbulence variables: (X: intensity, Y: drag, Z: frequency)  
-**X/Intensity** is the strength of all forces applied  
-**Y/Drag** is the strength of random directional forces applied  
-**Z/Frequency** is a preset movement pattern based on the provided seed value  
+**X/Intensity** is the strength of force applied to the partice velocity
+**Y/Drag** is the strength of directional forces applied to the particle velocity
+**Z/Frequency** the period in which the noise is sampled
   
 **Beat Vector Upper Bound** - The upper bound for range values that will be set once a beat occurs  
 **Beat Vector Lower Bound** - The lower bound for range values that will be set once a beat occurs  
