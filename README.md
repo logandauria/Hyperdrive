@@ -4,11 +4,11 @@
 
 ## Executable Unity File  
 
-Quest/Rift build: https://drive.google.com/file/d/1s0RCmdv86LETuFban3d8SHSuYfIo2MDo/view?usp=sharing  
+[Quest/Rift build](https://drive.google.com/file/d/1BKcVG8Xd9SAIaCzWDZ2GhODQ_494dIKE/view?usp=sharing)  
 All inclusive build coming soon!
 
 ## Demo video  
-[![IMAGE ALT TEXT](http://img.youtube.com/vi/0yUaF6ypi7c/0.jpg)](https://www.youtube.com/watch?v=0yUaF6ypi7c)
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/0yUaF6ypi7c/0.jpg)](https://www.youtube.com/watch?v=lpeKNhJLlEc)
 
 ## Setting up for development
 The unity project uses version 2022.1.0b9 so make sure you download the proper unity installation.
@@ -39,9 +39,9 @@ This repository contains many custom effect scripts along with more documentatio
 **Rest Smooth Time** - the amount of time it takes to revert back to the original state defined by the restVector  
 
 For the beat and rest vectors, the xyz values correlate to the following VFX turbulence variables: (X: intensity, Y: drag, Z: frequency)  
-**X/Intensity** is the strength of all forces applied  
-**Y/Drag** is the strength of random directional forces applied  
-**Z/Frequency** is a preset movement pattern based on the provided seed value  
+**X/Intensity** is the strength of force applied to the partice velocity
+**Y/Drag** is the strength of directional forces applied to the particle velocity
+**Z/Frequency** the period in which the noise is sampled
   
 **Beat Vector Upper Bound** - The upper bound for range values that will be set once a beat occurs  
 **Beat Vector Lower Bound** - The lower bound for range values that will be set once a beat occurs  
