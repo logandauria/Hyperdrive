@@ -14,7 +14,7 @@ public class SimpleMeshSync : AudioSyncer
     public GameObject player;
     public int xSize = 0;
     public int ySize = 0;
-
+    public float flatRadius = 5f;
 
 
     Mesh deformingMesh;
@@ -110,7 +110,7 @@ public class SimpleMeshSync : AudioSyncer
 
 
             // if range is over constant, vertex height will div towards 0
-            if(ranges[i] < 7)
+            if(ranges[i] < flatRadius)
             {
                 displacedVertices[i].y = displacedVertices[i].y/1.1f;
             }

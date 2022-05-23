@@ -45,13 +45,13 @@ MonoBehaviour:
     m_Value: 0
   top:
     m_OverrideState: 1
-    m_Value: {r: 0.039506897, g: 0.022828411, b: 0.1792453, a: 1}
+    m_Value: {r: 0.039546248, g: 0.023153365, b: 0.17788847, a: 1}
   middle:
     m_OverrideState: 1
     m_Value: {r: 0.9911022, g: 0.02121901, b: 0.32314324, a: 1}
   bottom:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.38710988, b: 0, a: 1}
+    m_Value: {r: 1, g: 0.38642952, b: 0, a: 1}
   gradientDiffusion:
     m_OverrideState: 1
     m_Value: 3.5
@@ -69,8 +69,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   enable:
-    m_OverrideState: 1
-    m_Value: 0
+    m_OverrideState: 0
+    m_Value: 1
   localClouds:
     m_OverrideState: 0
     m_Value: 0

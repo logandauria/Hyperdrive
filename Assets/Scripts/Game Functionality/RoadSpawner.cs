@@ -15,8 +15,13 @@ public class RoadSpawner : MonoBehaviour
     public Vector3 offset1;
     // offset of second road's spawn position
     public Vector3 offset2;
+    public Vector3 offset3;
     // road prefab to spawn
     public GameObject road;
+
+    // used for automatic spawning together
+    public bool useLength;
+    public float roadLength;
 
     // list of active roads in the game
     private List<GameObject> active = new List<GameObject>();
@@ -29,17 +34,18 @@ public class RoadSpawner : MonoBehaviour
         //active.Add(Instantiate(road, road.transform.position + offset1, road.transform.rotation));
         //active[active.Count - 1].tag = "env";
         //active[active.Count - 1].SetActive(true);
-        //SpawnAnother();
+        //SpawnAnother(offset2);
+        //SpawnAnother(offset3);
     }
 
     /// <summary>
     /// Spawn another road at the start or when a road is despawned
     /// </summary>
-    void SpawnAnother()
+    void SpawnAnother(Vector3 inputOffset)
     {
 
         // instantiate
-        active.Add(Instantiate(road, road.transform.position + offset2, road.transform.rotation));
+        active.Add(Instantiate(road, road.transform.position + inputOffset, road.transform.rotation));
         // make sure to update tag for runtime movement called by other script
         active[active.Count - 1].tag = "env";
         active[active.Count - 1].SetActive(true);
@@ -61,7 +67,8 @@ public class RoadSpawner : MonoBehaviour
         active.Add(Instantiate(road, road.transform.position + offset1, road.transform.rotation));
         active[active.Count - 1].tag = "env";
         active[active.Count - 1].SetActive(true);
-        SpawnAnother();
+        SpawnAnother(offset2);
+        SpawnAnother(offset3);
     }
 
     /// <summary>
@@ -82,16 +89,19 @@ public class RoadSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // move objects and kill objects that pass the z limit
         for (int x = 0; x < active.Count; x++)
         {
+
+
             active[x].transform.position = new Vector3(active[x].transform.position.x, active[x].transform.position.y, active[x].transform.position.z - (speed * GlobalSpeed.multiplier));
             if (active[x].transform.position.z < zLimit)
             {
                 Destroy(active[x]);
                 active.RemoveAt(x);
                 x--;
-                SpawnAnother();
+                SpawnAnother(offset3);
             }
         }
     }

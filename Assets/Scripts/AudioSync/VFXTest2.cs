@@ -90,6 +90,7 @@ public class VFXTest2 : AudioSyncer
 			vfx.SetFloat("drag", beatVectorUpperBound.y);
 			vfx.SetFloat("frequency", beatVectorUpperBound.z);
 		}
+		timer = 0f;
 	}
 
 	public void Start()

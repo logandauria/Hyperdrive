@@ -8,7 +8,8 @@ using UnityEngine;
 public class GlobalSpeed : MonoBehaviour
 {
     // global speed multiplier for use in other classes
-    public static float multiplier = 1f;
+    [SerializeField]
+    public static float multiplier = 2f;
     // how much to increment the multiplier every frame
     public float speedInc = .0003f;
 
