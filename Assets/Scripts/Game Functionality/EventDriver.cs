@@ -12,6 +12,17 @@ public class EventDriver : MonoBehaviour
 
     // List containing all of the scene objects
     public GameObject[] scenes;
+    // Scene for portal transition
+    public GameObject portalScene;
+    // Object for portal burst transition
+    public GameObject portalBurst;
+
+
+    // VFX for portal burst transition, attached to portalBurst object
+    private VisualEffect portalBurstVFX;
+    // track the initial emission for reversion since we have to set it to zero
+    private float initBurstEmission;
+
     // int to store current level
     private int counter = 0;
 
@@ -20,7 +31,8 @@ public class EventDriver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        portalBurstVFX = portalBurst.GetComponent<VisualEffect>();
+        initBurstEmission = portalBurstVFX.GetFloat("emission");
     }
 
     /// <summary>
@@ -28,13 +40,38 @@ public class EventDriver : MonoBehaviour
     /// </summary>
     public void nextScene()
     {
+        // activate quick portal burst for seamless transition
+        portalBurst.SetActive(true);
+        portalBurstVFX.SetFloat("emission", initBurstEmission);
+
+        // turn off current scene and increment to next after delay
+        Invoke("IncrementScene", 1f);
+
+        // activate actual portal
+        portalScene.SetActive(true);
+
+        // turn off emission for portal burst
+        portalBurstVFX.SetFloat("emission", 0f);
+
+        // turn on next scene after delay
+        Invoke("UpdateScene", 5f);
+
+        // deactivate portal burst
+        portalBurst.SetActive(false);
+    }
+
+    public void IncrementScene()
+    {
         scenes[counter].SetActive(false);
         counter += 1;
         counter %= scenes.Length;
-        scenes[counter].SetActive(true);
     }
 
-    
+    public void UpdateScene()
+    {
+        portalScene.SetActive(false);
+        scenes[counter].SetActive(true);
+    }
 
     // Update is called once per frame
     void Update()
