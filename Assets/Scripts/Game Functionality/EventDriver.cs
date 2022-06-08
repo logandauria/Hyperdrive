@@ -43,22 +43,15 @@ public class EventDriver : MonoBehaviour
     {
         // activate quick portal burst for seamless transition
         portalBurst.SetActive(true);
-        portalBurstVFX.SetFloat("emission", initBurstEmission);
+        portalBurstVFX.SetFloat("emission", 50000);
 
         // turn off current scene and increment to next after delay
         Invoke("IncrementScene", 1f);
 
-        // activate actual portal
-        portalScene.SetActive(true);
-
-        // turn off emission for portal burst
-        portalBurstVFX.SetFloat("emission", 0f);
-
         // turn on next scene after delay
         Invoke("UpdateScene", 5f);
 
-        // deactivate portal burst
-        portalBurst.SetActive(false);
+        
     }
 
     public void IncrementScene()
@@ -66,12 +59,20 @@ public class EventDriver : MonoBehaviour
         scenes[counter].SetActive(false);
         counter += 1;
         counter %= scenes.Length;
+        // activate actual portal
+        portalScene.SetActive(true);
+
+        // turn off emission for portal burst
+        portalBurstVFX.SetFloat("emission", 0f);
     }
 
     public void UpdateScene()
     {
         portalScene.SetActive(false);
         scenes[counter].SetActive(true);
+
+        // deactivate portal burst
+        portalBurst.SetActive(false);
     }
 
     // Update is called once per frame
