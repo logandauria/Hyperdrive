@@ -56,7 +56,7 @@ The steering wheel is a gameobject with the root parent being the XR Origin. Thi
 ![alt text](https://github.com/logandauria/Vaporwave-Reality-Racer/blob/master/images/XRGrabInteractable.png?raw=true)  
 This approach causes the parent (Vehicle > XR Origin) of the wheel to be overridden to the XR hand(s). To remedy this we can set a parent constraint component on the steering wheel to set its 'false parent' to the XR Origin so the needed position and rotation data can still be tracked.  
 ![alt text](https://github.com/logandauria/Vaporwave-Reality-Racer/blob/master/images/ParentConstraint.png?raw=true)  
-The Z rotation axis needs to be unfrozen because it's the axis in which the user turns the steering wheel. This should not mirror the XR Origin transform.  
+The Z rotation axis needs to be unfrozen because it's the axis in which the user turns the steering wheel, it should not mirror the XR Origin transform.  
 
 ### PORTALS
 
