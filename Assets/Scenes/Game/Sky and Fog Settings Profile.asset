@@ -353,13 +353,13 @@ MonoBehaviour:
       m_RotationOrder: 4
   scatteringTint:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 1, g: 0.5801887, b: 0.9511216, a: 1}
   powderEffectIntensity:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 0.635
   multiScattering:
-    m_OverrideState: 0
-    m_Value: 0.5
+    m_OverrideState: 1
+    m_Value: 1
   densityMultiplier:
     m_OverrideState: 0
     m_Value: 0.25
@@ -388,13 +388,13 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   erosionOcclusion:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   globalWindSpeed:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value:
-      mode: 1
-      customValue: 100
+      mode: 0
+      customValue: -10000
       additiveValue: 0
       multiplyValue: 1
   orientation:
@@ -415,7 +415,7 @@ MonoBehaviour:
     m_Value: 1
   erosionSpeedMultiplier:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 1
   verticalShapeWindSpeed:
     m_OverrideState: 1
     m_Value: -5000
@@ -423,28 +423,28 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 5000
   temporalAccumulationFactor:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   ghostingReduction:
     m_OverrideState: 0
     m_Value: 0
   shadows:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   shadowResolution:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 256
   shadowPlaneHeightOffset:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   shadowDistance:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 8000
   shadowOpacity:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   shadowOpacityFallback:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   m_Version: 2
   m_ObsoleteWindSpeed:
@@ -477,10 +477,10 @@ MonoBehaviour:
   active: 1
   opacity:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.833
   upperHemisphereOnly:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   layers:
     m_OverrideState: 1
     m_Value: 1
@@ -511,7 +511,7 @@ MonoBehaviour:
       m_Value: 0
     opacityB:
       m_OverrideState: 1
-      m_Value: 0
+      m_Value: 0.521
     opacityA:
       m_OverrideState: 1
       m_Value: 1
@@ -520,7 +520,7 @@ MonoBehaviour:
       m_Value: 0
     tint:
       m_OverrideState: 1
-      m_Value: {r: 0, g: 0, b: 0, a: 1}
+      m_Value: {r: 1, g: 0, b: 0, a: 1}
     exposure:
       m_OverrideState: 1
       m_Value: -87.3
@@ -577,7 +577,7 @@ MonoBehaviour:
       m_Value: 193
     tint:
       m_OverrideState: 1
-      m_Value: {r: 0, g: 0, b: 0, a: 1}
+      m_Value: {r: 1, g: 0.13679248, b: 0.93715054, a: 1}
     exposure:
       m_OverrideState: 1
       m_Value: 0
@@ -692,7 +692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 953beb541740ddc499d005ee80c9ff29, type: 3}
   m_Name: Fog
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   quality:
     m_OverrideState: 0
     m_Value: 1
@@ -785,14 +785,14 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   skyIntensityMode:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 2
   exposure:
     m_OverrideState: 1
     m_Value: 3.14
   multiplier:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 7.89
   upperHemisphereLuxValue:
     m_OverrideState: 1
     m_Value: 1
@@ -813,13 +813,13 @@ MonoBehaviour:
     m_Value: 0
   top:
     m_OverrideState: 1
-    m_Value: {r: 0.0011604409, g: 0, b: 0.01886791, a: 1}
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
   middle:
     m_OverrideState: 1
-    m_Value: {r: 0.2, g: 0.0030433703, b: 0, a: 1}
+    m_Value: {r: 0.9716981, g: 0.17546716, b: 0, a: 1}
   bottom:
     m_OverrideState: 1
-    m_Value: {r: 0.080009155, g: 0.05606976, b: 0.11320752, a: 1}
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
   gradientDiffusion:
     m_OverrideState: 1
     m_Value: 3.17

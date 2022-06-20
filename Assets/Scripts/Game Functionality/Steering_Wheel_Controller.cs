@@ -50,6 +50,7 @@ public class Steering_Wheel_Controller : MonoBehaviour
     // pushable button object
     public GameObject buttonPush;
 
+    private bool turnVehicleCam = false;
 
     // track last hand positions
     private Vector3 lastLeft;
@@ -275,4 +276,13 @@ public class Steering_Wheel_Controller : MonoBehaviour
         handOnWheel = true;
     }
 
+    public void turnOffVehicleCamTrack()
+    {
+        turnVehicleCam = false;
+    }
+
+    public void turnOnVehicleCamTrack()
+    {
+        turnVehicleCam = true;
+    }
 }
