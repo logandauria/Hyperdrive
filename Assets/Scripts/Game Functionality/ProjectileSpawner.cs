@@ -22,6 +22,10 @@ public class ProjectileSpawner : MonoBehaviour
     // projectile prefab list
     public GameObject[] prefabs;
 
+    // prevents object stacking when spawned by checking position and size of object
+    private bool dontStack = true;
+
+
     // stores the projectiles that are active in the scene
     private List<GameObject> active = new List<GameObject>();
 
@@ -38,7 +42,7 @@ public class ProjectileSpawner : MonoBehaviour
     void Spawn()
     {
         // select random prefab and random lane of the lists provided in the inspector
-        int select = Random.Range(0, prefabs.Length - 1);
+        int select = Random.Range(0, prefabs.Length);
         int lane = Random.Range(0, spawnpoints.Length);
         // if true, spawn object somewhere random between the two points
         if (spawnPointsAreRange)

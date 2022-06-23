@@ -16,8 +16,14 @@ public class EnemyProperties : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // obtain the collider of the enemy
         meshCol = GetComponent<Collider>();
+        // obtain the renderer of the enemy
         meshRen = GetComponent<Renderer>();
+        if(meshRen == null)
+        {
+            meshRen = GetComponentInChildren<Renderer>();
+        }
     }
 
     // Update is called once per frame
