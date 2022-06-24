@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class EnemyProperties : MonoBehaviour
 {
     // Unity event to trigger when a collision occurs
-    public UnityEvent youLose;
+    public UnityEvent collideEvent;
 
     private Collider meshCol;
     private Renderer meshRen;
@@ -37,8 +37,7 @@ public class EnemyProperties : MonoBehaviour
     /// </summary>
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("YOU LOSE!");
-        GlobalSpeed.multiplier = 0;
+        Debug.Log("COLLISION!");
 
         meshCol.enabled = false;
         meshRen.enabled = false;
@@ -53,7 +52,7 @@ public class EnemyProperties : MonoBehaviour
             GlobalSpeed.multiplier = 0;
             //Debug.Log("YOU LOSE!");
 
-            youLose.Invoke();
+            collideEvent.Invoke();
         }
     }
 }
