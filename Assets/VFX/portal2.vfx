@@ -3690,7 +3690,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614755}
   - {fileID: 8926484042661614756}
   m_OutputSlots: []
-  m_Disabled: 0
+  m_Disabled: 1
 --- !u!114 &8926484042661614747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3920,7 +3920,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.45
+      m_SerializableObject: 0.38
     m_Space: 2147483647
   m_Property:
     name: attractionSpeed
@@ -3954,7 +3954,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 104.4
+      m_SerializableObject: 311.8
     m_Space: 2147483647
   m_Property:
     name: attractionForce
@@ -3988,7 +3988,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.1
+      m_SerializableObject: 0
     m_Space: 2147483647
   m_Property:
     name: stickDistance
@@ -4022,7 +4022,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1
+      m_SerializableObject: 18.25
     m_Space: 2147483647
   m_Property:
     name: stickForce
@@ -4084,7 +4084,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEditor.VFX.Vector, Unity.VisualEffectGraph.Editor,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"vector":{"x":0.0,"y":-2.0,"z":0.0}}'
+      m_SerializableObject: '{"vector":{"x":0.0,"y":-4.0,"z":0.0}}'
     m_Space: 0
   m_Property:
     name: Velocity

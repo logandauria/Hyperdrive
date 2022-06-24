@@ -17,10 +17,15 @@ public class EventDriver : MonoBehaviour
     public GameObject portalScene;
     // Object for portal burst transition
     public GameObject portalBurst;
-
+    // actual portal
+    public GameObject portal;
+    // Enemy manager
+    public GameObject enemyManager;
 
     // VFX for portal burst transition, attached to portalBurst object
     private VisualEffect portalBurstVFX;
+
+    private VisualEffect portalVFX;
     // track the initial emission for reversion since we have to set it to zero
     private float initBurstEmission;
 
@@ -32,8 +37,15 @@ public class EventDriver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        portalVFX = portal.GetComponent<VisualEffect>();
         portalBurstVFX = portalBurst.GetComponent<VisualEffect>();
         initBurstEmission = portalBurstVFX.GetFloat("emission");
+    }
+
+    void youLose()
+    {
+        GlobalSpeed.multiplier = 0;
+        Debug.Log("YOU LOSE");
     }
 
     /// <summary>
@@ -41,18 +53,36 @@ public class EventDriver : MonoBehaviour
     /// </summary>
     public void nextScene()
     {
-        // activate quick portal burst for seamless transition
-        portalBurst.SetActive(true);
-        portalBurstVFX.SetFloat("emission", 50000);
+        enemyManager.SetActive(false);
+        if (counter == scenes.Length - 1)
+        {
+            youLose();
+        }
+        else
+        {
+            // activate quick portal burst for seamless transition
+            portalBurst.SetActive(true);
+            portalBurstVFX.SetFloat("emission", 50000);
+            portalVFX.SetFloat("emission", 50000);
 
-        // turn off current scene and increment to next after delay
-        Invoke("IncrementScene", 1f);
 
-        // turn on next scene after delay
-        Invoke("UpdateScene", 5f);
+            // turn off current scene and increment to next after delay
+            Invoke("IncrementScene", 2f);
 
+            // turn on next scene after delay
+            
+            Invoke("UpdateScene", 5f);
+            Invoke("FadePortal", 6f);
+        }
         
     }
+
+    public void FadePortal()
+    {
+        portalVFX.SetFloat("emission", 0);
+    }
+
+
 
     public void IncrementScene()
     {
@@ -64,6 +94,7 @@ public class EventDriver : MonoBehaviour
 
         // turn off emission for portal burst
         portalBurstVFX.SetFloat("emission", 0f);
+
     }
 
     public void UpdateScene()
@@ -73,6 +104,7 @@ public class EventDriver : MonoBehaviour
 
         // deactivate portal burst
         portalBurst.SetActive(false);
+        enemyManager.SetActive(true);
     }
 
     // Update is called once per frame
