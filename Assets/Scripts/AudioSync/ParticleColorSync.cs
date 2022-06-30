@@ -15,8 +15,15 @@ public class ParticleColorSync : AudioSyncer
 	// number alpha targeted of the vfx graph... so multiple alpha syncs can be used with different beats
 	public float alphaNum = 1;
 
-	private Color[] colors = { Color.red, Color.magenta, Color.green, Color.blue, Color.cyan, Color.white };
-	private int selectedColor = 0;
+	private Color[] colors = {
+		new Color(1,0,0,1),
+		new Color(1,1,0,1),
+		new Color(1,1,1,1),
+		new Color(1,0,1,1),
+		new Color(0,0,1,1),
+		new Color(0,1,1,1),
+		new Color(0,1,0,1)
+	}; private int selectedColor = 0;
 
 	private float curAlpha = 0;
 
