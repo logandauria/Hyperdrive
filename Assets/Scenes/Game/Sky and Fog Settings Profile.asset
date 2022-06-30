@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   enable:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
   localClouds:
     m_OverrideState: 1
@@ -418,10 +418,10 @@ MonoBehaviour:
     m_Value: 1
   verticalShapeWindSpeed:
     m_OverrideState: 1
-    m_Value: -5000
+    m_Value: 0
   verticalErosionWindSpeed:
     m_OverrideState: 1
-    m_Value: 5000
+    m_Value: 0
   temporalAccumulationFactor:
     m_OverrideState: 1
     m_Value: 1

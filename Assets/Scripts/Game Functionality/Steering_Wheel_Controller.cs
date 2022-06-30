@@ -143,6 +143,8 @@ public class Steering_Wheel_Controller : MonoBehaviour
             move = move - 360;
         }
         move /= moveDamper;
+        // sideways movement increases with speed
+        move *= GlobalSpeed.multiplier / 2;
 
         if(move > 0 && Mathf.Abs(Vehicle.transform.position.x - XLimit1.transform.position.x) < 1)
         {

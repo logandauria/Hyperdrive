@@ -22,6 +22,11 @@ public class EventDriver : MonoBehaviour
     // Enemy manager
     public GameObject enemyManager;
 
+    // Event to call when you lose
+    public UnityEvent loseEvent;
+
+    public UnityEvent killCars;
+
     // VFX for portal burst transition, attached to portalBurst object
     private VisualEffect portalBurstVFX;
 
@@ -46,6 +51,7 @@ public class EventDriver : MonoBehaviour
     {
         GlobalSpeed.multiplier = 0;
         Debug.Log("YOU LOSE");
+        loseEvent.Invoke();
     }
 
     /// <summary>
@@ -65,6 +71,7 @@ public class EventDriver : MonoBehaviour
             portalBurstVFX.SetFloat("emission", 50000);
             portalVFX.SetFloat("emission", 50000);
 
+            
 
             // turn off current scene and increment to next after delay
             Invoke("IncrementScene", 2f);
@@ -95,6 +102,8 @@ public class EventDriver : MonoBehaviour
         // turn off emission for portal burst
         portalBurstVFX.SetFloat("emission", 0f);
 
+        // increment gradientnum of portals vfx graph to change the portal color
+        portalVFX.SetFloat("gradientnum", portalVFX.GetFloat("gradientnum") + 1 % 5);
     }
 
     public void UpdateScene()

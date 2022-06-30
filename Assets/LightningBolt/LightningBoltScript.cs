@@ -306,7 +306,7 @@ namespace DigitalRuby.LightningBolt
         {
             base.OnBeat();
             Debug.Log("beat");
-            Vector3 randomOffset = new Vector3(Random.Range(-300, 300), 0, Random.Range(-200, 200));
+            Vector3 randomOffset = new Vector3(Random.Range(-100, 200), 0, Random.Range(-100, 100));
             StartPosition = randomOffset;
             EndPosition = randomOffset + new Vector3(Random.Range(-50, 50), 0, Random.Range(-50, 50));
             Trigger();
