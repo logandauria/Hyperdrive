@@ -4,7 +4,7 @@
 
 ## Executable Unity File  
 
-[Quest/Rift build](https://drive.google.com/file/d/1BKcVG8Xd9SAIaCzWDZ2GhODQ_494dIKE/view?usp=sharing)  
+[BETA 1.0 Quest/Rift build](https://drive.google.com/file/d/10hVnsp-YR1TXU4BLjBKYquzLXQOCNZ77/view?usp=sharing)  
 All inclusive build coming soon!
 
 ## Demo video  
