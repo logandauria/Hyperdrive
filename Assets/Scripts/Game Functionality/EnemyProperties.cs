@@ -58,6 +58,8 @@ public class EnemyProperties : MonoBehaviour
     /// </summary>
     void OnCollisionEnter(Collision col)
     {
+        Debug.Log("idkCOLLISION!");
+
         if (triggerOnceEverySec)
         {
             triggerOnceEverySec = false;

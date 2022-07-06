@@ -109,7 +109,7 @@ public class RandomMeshSync : AudioSyncer
         for (int i = 0; i < vertexVelocities.Length; i++)
         {
             Vector3 velocity = vertexVelocities[i];
-            vertexVelocities[i].y *= .99f;
+            vertexVelocities[i].y *= .95f;
 
 
             // if range is over constant, vertex height will div towards 0

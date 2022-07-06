@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Mini "engine" for analyzing spectrum data
-/// Feel free to get fancy in here for more accurate visualizations!
+/// engine for analyzing spectrum data
 /// </summary>
 public class AudioSpectrum : MonoBehaviour {
 
@@ -24,14 +23,13 @@ public class AudioSpectrum : MonoBehaviour {
 
     private void Start()
     {
-        /// initialize buffer
         m_audioSpectrum = new float[128];
     }
 
-    // This value served to AudioSyncer for beat extraction
+    // AudioSyncer is given this for beat extraction
     public static float spectrumValue {get; private set;}
 
-    // Unity fills this up for us
+    // Spectrum data from Unity
     private float[] m_audioSpectrum;
 
 }

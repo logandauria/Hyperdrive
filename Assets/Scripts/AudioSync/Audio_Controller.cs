@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// Used to mix two different songs dependent on the angle of the steering wheel
+/// <summary> 
+/// Used to mix two different songs dependent on the angle of the steering wheel
+/// </summary>
 public class Audio_Controller : MonoBehaviour
 {
     // Steering wheel

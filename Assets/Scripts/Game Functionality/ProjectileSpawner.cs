@@ -11,6 +11,9 @@ public class ProjectileSpawner : MonoBehaviour
     public GameObject[] spawnpoints;
     // if true, spawn object somewhere random between two points/object positions in the spawnpoints array
     public bool spawnPointsAreRange = false;
+
+    // if true, spawns will go according to the spawnpoints in a pattern of the spawnPatterns bool array
+    public bool patternedSpawn = true;
     // speed of projectile
     public float speed;
     // time required between projectile spawns
@@ -25,6 +28,18 @@ public class ProjectileSpawner : MonoBehaviour
     // prevents object stacking when spawned by checking position and size of object
     private bool dontStack = true;
 
+    // bool array representing whether a car will spawn in a lane when a pattern is selected
+    private bool[,] spawnPatterns = new bool[,]
+    {
+        {true,true,true,false},
+        {true,true,false,false},
+        {false,true,true,false},
+        {false,false,true,true},
+        {false,true,true,true},
+        {true,false,true,false},
+        {false,true,false,true},
+        {false,true,true,false},
+    };
 
     // stores the projectiles that are active in the scene
     private List<GameObject> active = new List<GameObject>();
@@ -49,17 +64,33 @@ public class ProjectileSpawner : MonoBehaviour
         {
             Vector3 pos = new Vector3(Random.Range(spawnpoints[0].transform.position.x, spawnpoints[spawnpoints.Length - 1].transform.position.x), spawnpoints[0].transform.position.y, spawnpoints[0].transform.position.z);
             active.Add(Instantiate(prefabs[select], pos + offset, spawnpoints[lane].transform.rotation));
+            active[active.Count - 1].tag = "env";
+            active[active.Count - 1].SetActive(true);
         }
-        else
-        {
+        else if(patternedSpawn){
+            int pattern = Random.Range(0, spawnPatterns.GetLength(0));
+            Debug.Log("Pattern:" + pattern);
+            for(int x = 0; x < spawnPatterns.GetLength(1); x++)
+            {
+                if(spawnPatterns[pattern, x] == true)
+                {
+                    Debug.Log("Spawning in pattern " + pattern);
+                    select = Random.Range(0, prefabs.Length);
+                    Vector3 randomOffset = new Vector3(Random.Range(-0.1f, 0.1f), 0f, Random.Range(-2f, 2f));
+                    active.Add(Instantiate(prefabs[select], spawnpoints[x].transform.position + offset + randomOffset, spawnpoints[x].transform.rotation));
+                    active[active.Count - 1].tag = "env";
+                    active[active.Count - 1].SetActive(true);
+                }
+            }
+        } 
+        else {
             // instantiate
             active.Add(Instantiate(prefabs[select], spawnpoints[lane].transform.position + offset, spawnpoints[lane].transform.rotation));
+            active[active.Count - 1].tag = "env";
+            active[active.Count - 1].SetActive(true);
         }
         // make sure to update tag for runtime movement called by other script
-        active[active.Count - 1].tag = "env";
         
-        
-        active[active.Count - 1].SetActive(true);
     }
 
     /// <summary>

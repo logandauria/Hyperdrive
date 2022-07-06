@@ -12,13 +12,13 @@ public class GlobalSpeed : MonoBehaviour
     public static float multiplier = 2f;
     // how much to increment the multiplier every frame
     public float speedInc = .0003f;
-
+    public float startingSpeed = 5f;
     public static float highScore = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        multiplier = startingSpeed;
     }
 
     // Update is called once per frame
